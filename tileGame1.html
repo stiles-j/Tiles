@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <script src="jquery-2.2.3.min.js"></script>
+        <script src="tiles2.js"></script>        
+    
+        <style>
+            .tile{
+                height: 50px;
+                width: 50px;
+                border: 3px rgb(100, 100, 150) solid;
+                margin: 1px;
+                border-radius: 5px;
+                font-family: "trebuchet ms", sans-serif;
+                color: rgb(200, 150, 100);
+                text-align: center;
+                padding-bottom: 20px;
+                padding-left: 10px;
+                padding-right: 10px;
+                background-color: white;
+        }
+            
+            #n1{
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                
+            }
+            
+            #n2{
+                position: absolute;
+                left: 77px;
+                top: 0px;
+            }
+            
+            #n3{
+                position: absolute;
+                left: 154px;
+                top: 0px;
+            }
+            
+            #n4{
+                position: absolute;
+                left: 0px;
+                top: 77px;
+            }
+            
+            #n5{
+                position: absolute;
+                left: 77px;
+                top: 77px;
+            }
+            
+            #n6{
+                position: absolute;
+                left: 154px;
+                top: 77px;
+            }
+            
+            #n7{
+                position: absolute;
+                left: 0px;
+                top: 154px;
+            }
+            
+            #n8{
+                position: absolute;
+                left: 77px;
+                top: 154px;
+            }
+            
+            #board{
+                position: relative;
+                border: 5px rgb(130, 100, 80) solid;
+                border-radius: 10px;
+                background-color: rgb(200, 200, 150);
+                height: 233px;
+                width: 233px;
+                top: 50px;
+                left: 100px;
+            }
+            
+            h1{
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none; 
+            }
+            
+            #headline{
+                color: rgb(100, 100, 200);
+                position: relative;
+                top: 50px;
+                left: 100px;
+                font-family: "comic sans ms", sans-serif;
+                width: 240px;
+                padding-top: 0px;
+                padding-bottom: 0px;
+                margin-top: -70px;
+                margin-bottom: -30px;
+                font-size: 2.5em;
+                
+            }
+            
+            #scoreBox{
+                float: left;
+                color: rgb(100, 100, 200);
+                position: relative;
+                font-family: "comic sans ms", sans-serif;
+                font-size: 1.5em;
+                width: 240px;
+                margin-top: 40px;
+                margin-left: 100px;
+                margin-right: 0px;
+                padding-right: 0px;
+            }
+            
+            #scoreBox h2{
+                float: left;
+            }
+
+            
+            #score{
+                position: relative;
+                float: left;
+                width: 30px;
+                margin-left: 0.5em;
+                margin-top: 25px;
+            }
+
+        </style>
+        
+        <script>
+            $(document).ready(function(){
+                
+                var gameArray = [['n1', 'n2', 'n3'],
+                                 ['n4', 'n5', 'n6'],
+                                 ['n7', 'n8', 0]
+                                ];
+                var score = 0;
+                var hasWon = 0;
+                
+                
+                /*event handler for click on tiles*/
+                $('.tile').on('click', function(e){
+                    /*On click execute the move*/
+                    interface(e, gameArray);  
+                    /*increment the score*/
+                    score++;
+                    $('#score').text(score);
+                    /*check to see if the player won*/
+                    hasWon = winCheck(gameArray);
+                    /*if they won, display a message*/
+                    if (hasWon)
+                    {
+                        alert("You Win!");
+                    }/*end if*/
+                }); /* end on*/
+            }); /*end ready*/
+        </script>
+    </head>
+    
+    <body>
+        <div id="wrapper">
+            <div id="headline">
+                <h6>Reverse the order<br> of the tiles</h6>
+            </div>
+            <div id="board">
+                <div id="n1" class="tile">
+                    <h1 class="pip">1</h1>
+                </div>
+                <div id="n2" class="tile">
+                    <h1 class="pip">2</h1>
+                </div>
+                <div id="n3" class="tile">
+                    <h1 class="pip">3</h1>
+                </div>
+                <div id="n4" class="tile">
+                    <h1 class="pip">4</h1>
+                </div>
+                <div id="n5" class="tile">
+                    <h1 class="pip">5</h1>
+                </div>
+                <div id="n6" class="tile">
+                    <h1 class="pip">6</h1>
+                </div>
+                <div id="n7" class="tile">
+                    <h1 class="pip">7</h1>
+                </div>
+                <div id="n8" class="tile">
+                    <h1 class="pip">8</h1>
+                </div>
+            
+                                
+            </div>
+            <div id="scoreBox">
+                <h2>Moves:</h2>
+                <h1 id="score"></h1>
+            </div>
+        </div>
+    </body>
+    
+    <footer>
+    
+    </footer>
+
+
+</html>
